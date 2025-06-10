@@ -6,23 +6,24 @@
 #    By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 12:04:28 by jvarila           #+#    #+#              #
-#    Updated: 2025/06/10 09:49:56 by jvarila          ###   ########.fr        #
+#    Updated: 2025/06/09 19:13:53 by jvarila          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= aaaaand____open
+NAME		:= serena_my_love
 
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++20
 DEBUG_FLAGS	:= -g
 # ---------------------------------------------------------------------------- #
 INC_DIR		:= ./inc
-HEADERS		:= $(INC_DIR)/ClapTrap.hpp
+HEADERS		:= $(INC_DIR)/ClapTrap.hpp $(INC_DIR)/ScavTrap.hpp
 # ---------------------------------------------------------------------------- #
 SRC_DIR	:=	./src
 OBJ_DIR	:=	./obj
 # ---------------------------------------------------------------------------- #
 SRC :=	$(SRC_DIR)/ClapTrap.cpp	\
+		$(SRC_DIR)/ScavTrap.cpp	\
 		$(SRC_DIR)/main.cpp
 # ---------------------------------------------------------------------------- #
 OBJ :=	$(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))

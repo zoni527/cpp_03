@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 #include <iostream>
 
 #define YELLOW	"\033[0;93m\001"
@@ -23,39 +23,43 @@ int main( void ) {
 
 	print_test_name( "Test: default costructor" );
 	{
-		ClapTrap();
+		FragTrap();
 	}
 	print_test_name( "Test: string constructor" );
 	{
-		ClapTrap( "DerpyDerp" );
+		FragTrap( "DerpyDerp" );
 	}
 	print_test_name( "Test: copy constructor" );
 	{
-		ClapTrap one( "First" );
+		FragTrap one( "First" );
 		std::cout << "\n";
-		ClapTrap two( one );
+		FragTrap two( one );
 	}
 	print_test_name( "Test: copy assignment operator" );
 	{
-		ClapTrap one( "First" ), two( "Second" );
+		FragTrap one( "First" ), two( "Second" );
 		std::cout << "\n";
 		one = two;
 	}
 	print_test_name( "Test: attack" );
 	{
-		ClapTrap().attack( "YOU" );
+		FragTrap().attack( "YOU" );
 	}
 	print_test_name( "Test: takeDamage" );
 	{
-		ClapTrap().takeDamage( 5 );
+		FragTrap().takeDamage( 5 );
 		std::cout << "\n";
-		ClapTrap().takeDamage( -1 );
+		FragTrap().takeDamage( -1 );
 	}
 	print_test_name( "Test: beRepaired" );
 	{
-		ClapTrap().beRepaired( 5 );
+		FragTrap().beRepaired( 5 );
 		std::cout << "\n";
-		ClapTrap().beRepaired( -1 );
+		FragTrap().beRepaired( -1 );
+	}
+	print_test_name( "Test: highFivesGuys" );
+	{
+		FragTrap().highFivesGuys();
 	}
 	std::cout << std::endl;
 	return 0;

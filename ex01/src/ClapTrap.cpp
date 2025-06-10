@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:13:23 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/10 11:18:50 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/06/10 11:43:27 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <climits>
 
 #define BPURPLE	"\033[1;35m\001"
-#define HICYAN	"\033[1;96m\001"
+#define HIBBLUE	"\033[1;94m\001"
 #define RESET	"\033[0m\002"
 
 const std::string	clap_trap_str = BPURPLE "ClapTrap" RESET;
@@ -73,33 +73,33 @@ void	ClapTrap:: beRepaired( unsigned int amount ) {
 
 // ---------------------------------------------------------------- constructors
 
-ClapTrap:: ClapTrap( void ) : _name( HICYAN "sane_default" RESET ) {
-	std::cout << clap_trap_str + " default constructor called\n";
-	std::cout
-		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+ClapTrap:: ClapTrap( void ) : _name( HIBBLUE "sane_default" RESET ) {
+	std::cout << clap_trap_str + " default constructor called" << std::endl;
 }
 
-ClapTrap:: ClapTrap( std::string const &name ) : _name( HICYAN + name + RESET ) {
-	std::cout << clap_trap_str + " string constructor called\n";
-	std::cout
-		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+ClapTrap:: ClapTrap( std::string const &name ) : _name( HIBBLUE + name + RESET ) {
+	std::cout << clap_trap_str + " string constructor called" << std::endl;
 }
 
-ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( HICYAN + src._name + RESET ) {
-	std::cout << clap_trap_str + " copy constructor called\n";
-	std::cout
-		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( HIBBLUE + src._name + RESET ) {
+	std::cout << clap_trap_str + " copy constructor called" << std::endl;
+}
+
+ClapTrap:: ClapTrap(	std::string const	&name,
+						unsigned int		hit_points,
+						unsigned int		energy_points,
+						unsigned int		attack_damage )
+	:	_name( HIBBLUE + name + RESET ),
+		_hit_points( hit_points ),
+		_energy_points( energy_points ),
+		_attack_damage(attack_damage) {
+	std::cout << clap_trap_str + " utility constructor called" << std::endl;
 }
 
 // ------------------------------------------------------------------ destructor
 
 ClapTrap:: ~ClapTrap( void ) {
-	std::cout << clap_trap_str + " destructor called\n";
-	std::cout
-		<< "A " + clap_trap_str + " named " << _name << " has left the map" << std::endl;
+	std::cout << clap_trap_str + " destructor called" << std::endl;
 }
 
 // --------------------------------------------------- member operator overloads

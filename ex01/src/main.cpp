@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 #include <iostream>
 
 #define YELLOW	"\033[0;93m\001"
@@ -23,39 +23,43 @@ int main( void ) {
 
 	print_test_name( "Test: default costructor" );
 	{
-		ClapTrap();
+		ScavTrap();
 	}
 	print_test_name( "Test: string constructor" );
 	{
-		ClapTrap( "DerpyDerp" );
+		ScavTrap( "DerpyDerp" );
 	}
 	print_test_name( "Test: copy constructor" );
 	{
-		ClapTrap one( "First" );
+		ScavTrap one( "First" );
 		std::cout << "\n";
-		ClapTrap two( one );
+		ScavTrap two( one );
 	}
 	print_test_name( "Test: copy assignment operator" );
 	{
-		ClapTrap one( "First" ), two( "Second" );
+		ScavTrap one( "First" ), two( "Second" );
 		std::cout << "\n";
 		one = two;
 	}
 	print_test_name( "Test: attack" );
 	{
-		ClapTrap().attack( "YOU" );
+		ScavTrap().attack( "YOU" );
 	}
 	print_test_name( "Test: takeDamage" );
 	{
-		ClapTrap().takeDamage( 5 );
+		ScavTrap().takeDamage( 5 );
 		std::cout << "\n";
-		ClapTrap().takeDamage( -1 );
+		ScavTrap().takeDamage( -1 );
 	}
 	print_test_name( "Test: beRepaired" );
 	{
-		ClapTrap().beRepaired( 5 );
+		ScavTrap().beRepaired( 5 );
 		std::cout << "\n";
-		ClapTrap().beRepaired( -1 );
+		ScavTrap().beRepaired( -1 );
+	}
+	print_test_name( "Test: guardGate" );
+	{
+		ScavTrap().guardGate();
 	}
 	std::cout << std::endl;
 	return 0;
