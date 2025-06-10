@@ -14,15 +14,15 @@
 #include <iostream>
 #include <climits>
 
-#define BPURPLE	"\033[1;35m\001"
-#define HICYAN	"\033[1;96m\001"
-#define RESET	"\033[0m\002"
+#define BPURPLE		"\033[1;35m\001"
+#define BHIPURPLE	"\033[1;95m\001"
+#define RESET		"\033[0m\002"
 
 const std::string	clap_trap_str = BPURPLE "ClapTrap" RESET;
 
 // ------------------------------------------------------------ member functions
 
-void	ClapTrap:: attack( std::string const &target ) {
+void ClapTrap:: attack( std::string const &target ) {
 
 	if ( _energy_points == 0 ) {
 		std::cout
@@ -37,7 +37,7 @@ void	ClapTrap:: attack( std::string const &target ) {
 		<< ", causing " << _attack_damage << " points of damage!" << std::endl;
 }
 
-void	ClapTrap:: takeDamage( unsigned int amount ) {
+void ClapTrap:: takeDamage( unsigned int amount ) {
 
 	if ( amount >= _hit_points ) {
 		_hit_points = 0;
@@ -54,13 +54,13 @@ void	ClapTrap:: takeDamage( unsigned int amount ) {
 		<< std::endl;
 }
 
-void	ClapTrap:: beRepaired( unsigned int amount ) {
+void ClapTrap:: beRepaired( unsigned int amount ) {
 
 	if ( _hit_points > UINT_MAX - amount ) {
 		_hit_points = UINT_MAX;
 		std::cout
 			<< clap_trap_str + " " << _name << " has been repaired by " << amount
-			<< " hit points and it now has INT_MAX points of health" << std::endl;
+			<< " hit points and it now has UINT_MAX points of health" << std::endl;
 		return;
 	}
 
@@ -71,23 +71,31 @@ void	ClapTrap:: beRepaired( unsigned int amount ) {
 		<< std::endl;
 }
 
+void ClapTrap:: printInfo( void ) {
+	std::cout << "Name:		" << _name << "\n";
+	std::cout << "Hit points:	" << _hit_points << "\n";
+	std::cout << "Energy points:	" << _energy_points << "\n";
+	std::cout << "Attack damage:	" << _attack_damage << "\n";
+	std::cout << std::endl;
+}
+
 // ---------------------------------------------------------------- constructors
 
-ClapTrap:: ClapTrap( void ) : _name( HICYAN "sane_default" RESET ) {
+ClapTrap:: ClapTrap( void ) : _name( BHIPURPLE "sane_default" RESET ) {
 	std::cout << clap_trap_str + " default constructor called\n";
 	std::cout
 		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"
 		<< std::endl;
 }
 
-ClapTrap:: ClapTrap( std::string const &name ) : _name( HICYAN + name + RESET ) {
+ClapTrap:: ClapTrap( std::string const &name ) : _name( BHIPURPLE + name + RESET ) {
 	std::cout << clap_trap_str + " string constructor called\n";
 	std::cout
 		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"
 		<< std::endl;
 }
 
-ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( HICYAN + src._name + RESET ) {
+ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( BHIPURPLE + src._name + RESET ) {
 	std::cout << clap_trap_str + " copy constructor called\n";
 	std::cout
 		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"

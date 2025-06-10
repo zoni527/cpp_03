@@ -14,7 +14,7 @@
 #include <iostream>
 
 #define BCYAN	"\033[1;36m\001"
-#define HIBBLUE	"\033[1;94m\001"
+#define BHICYAN	"\033[1;96m\001"
 #define RESET	"\033[0m\002"
 
 const std::string	scav_trap_str = BCYAN "ScavTrap" RESET;
@@ -44,7 +44,7 @@ void	ScavTrap:: guardGate( void ) {
 // ---------------------------------------------------------------- constructors
 
 ScavTrap:: ScavTrap( void )
-: ClapTrap( HIBBLUE "sane_default" RESET, 100, 50, 20) {
+: ClapTrap( BHICYAN "sane_default" RESET, 100, 50, 20) {
 	std::cout << scav_trap_str + " default constructor called\n";
 	std::cout
 		<< "A " + scav_trap_str + " named " << _name << " has spawned into the map"
@@ -52,7 +52,7 @@ ScavTrap:: ScavTrap( void )
 }
 
 ScavTrap:: ScavTrap( std::string const &name )
-: ClapTrap( HIBBLUE + name + RESET, 100, 50, 20 ) {
+: ClapTrap( BHICYAN + name + RESET, 100, 50, 20 ) {
 	std::cout << scav_trap_str + " string constructor called\n";
 	std::cout
 		<< "A " + scav_trap_str + " named " << _name << " has spawned into the map"

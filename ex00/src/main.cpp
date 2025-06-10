@@ -23,39 +23,84 @@ int main( void ) {
 
 	print_test_name( "Test: default costructor" );
 	{
-		ClapTrap();
+		std::cout << "ClapTrap a; ->\n";
+		ClapTrap a;
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
 	}
 	print_test_name( "Test: string constructor" );
 	{
-		ClapTrap( "DerpyDerp" );
+		std::cout << "ClapTrap a( \"DerpyDerp\" ); ->\n";
+		ClapTrap a( "DerpyDerp" );
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
 	}
 	print_test_name( "Test: copy constructor" );
 	{
-		ClapTrap one( "First" );
-		std::cout << "\n";
-		ClapTrap two( one );
+		std::cout << "ClapTrap a( \"First\" ); ->\n";
+		ClapTrap a( "First" );
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
+		std::cout << "ClapTrap b( a ); ->\n";
+		ClapTrap b( a );
+		std::cout << "\nb.printInfo(); ->\n";
+		b.printInfo();
 	}
 	print_test_name( "Test: copy assignment operator" );
 	{
-		ClapTrap one( "First" ), two( "Second" );
-		std::cout << "\n";
-		one = two;
+		std::cout << "ClapTrap a( \"First\" ), b( \"Second\" ); ->\n";
+		ClapTrap a( "First" ), b( "Second" );
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
+		std::cout << "\nb.printInfo(); ->\n";
+		b.printInfo();
+		std::cout << "\na = b; ->\n";
+		a = b;
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
+		std::cout << "\nb.printInfo(); ->\n";
+		b.printInfo();
 	}
 	print_test_name( "Test: attack" );
 	{
-		ClapTrap().attack( "YOU" );
+		std::cout << "ClapTrap a; ->\n";
+		ClapTrap a;
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
+		std::cout << "\na.attack( \"YOU\" ); ->\n";
+		a.attack( "YOU" );
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
 	}
 	print_test_name( "Test: takeDamage" );
 	{
-		ClapTrap().takeDamage( 5 );
-		std::cout << "\n";
-		ClapTrap().takeDamage( -1 );
+		std::cout << "ClapTrap a; ->\n";
+		ClapTrap a;
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
+		std::cout << "\na.takeDamage( 5 ); ->\n";
+		a.takeDamage( 5 );
+		std::cout << "\na.printInfo() ->\n";
+		a.printInfo();
+		std::cout << "\na.takeDamage( -1 ); ->\n";
+		a.takeDamage( -1 );
+		std::cout << "\na.printInfo() ->\n";
+		a.printInfo();
 	}
 	print_test_name( "Test: beRepaired" );
 	{
-		ClapTrap().beRepaired( 5 );
-		std::cout << "\n";
-		ClapTrap().beRepaired( -1 );
+		std::cout << "ClapTrap a; ->\n";
+		ClapTrap a;
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
+		std::cout << "\na.beRepaired( 5 ); ->\n";
+		a.beRepaired( 5 );
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
+		std::cout << "\na.beRepaired( -1 ); ->\n";
+		a.beRepaired( -1 );
+		std::cout << "\na.printInfo(); ->\n";
+		a.printInfo();
 	}
 	std::cout << std::endl;
 	return 0;

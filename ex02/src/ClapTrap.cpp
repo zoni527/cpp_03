@@ -14,9 +14,10 @@
 #include <iostream>
 #include <climits>
 
-#define BPURPLE	"\033[1;35m\001"
-#define HIBBLUE	"\033[1;94m\001"
-#define RESET	"\033[0m\002"
+#define BPURPLE		"\033[1;35m\001"
+#define BHIPURPLE	"\033[1;95m\001"
+#define RESET		"\033[0m\002"
+
 
 const std::string	clap_trap_str = BPURPLE "ClapTrap" RESET;
 
@@ -71,17 +72,25 @@ void	ClapTrap:: beRepaired( unsigned int amount ) {
 		<< std::endl;
 }
 
+void ClapTrap:: printInfo( void ) {
+	std::cout << "Name:		" << _name << "\n";
+	std::cout << "Hit points:	" << _hit_points << "\n";
+	std::cout << "Energy points:	" << _energy_points << "\n";
+	std::cout << "Attack damage:	" << _attack_damage << "\n";
+	std::cout << std::endl;
+}
+
 // ---------------------------------------------------------------- constructors
 
-ClapTrap:: ClapTrap( void ) : _name( HIBBLUE "sane_default" RESET ) {
+ClapTrap:: ClapTrap( void ) : _name( BHIPURPLE "sane_default" RESET ) {
 	std::cout << clap_trap_str + " default constructor called" << std::endl;
 }
 
-ClapTrap:: ClapTrap( std::string const &name ) : _name( HIBBLUE + name + RESET ) {
+ClapTrap:: ClapTrap( std::string const &name ) : _name( BHIPURPLE + name + RESET ) {
 	std::cout << clap_trap_str + " string constructor called" << std::endl;
 }
 
-ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( HIBBLUE + src._name + RESET ) {
+ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( BHIPURPLE + src._name + RESET ) {
 	std::cout << clap_trap_str + " copy constructor called" << std::endl;
 }
 
@@ -89,7 +98,7 @@ ClapTrap:: ClapTrap(	std::string const	&name,
 						unsigned int		hit_points,
 						unsigned int		energy_points,
 						unsigned int		attack_damage )
-	:	_name( HIBBLUE + name + RESET ),
+	:	_name( BHIPURPLE + name + RESET ),
 		_hit_points( hit_points ),
 		_energy_points( energy_points ),
 		_attack_damage(attack_damage) {
