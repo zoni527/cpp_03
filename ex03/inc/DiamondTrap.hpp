@@ -1,45 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 13:05:55 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/10 13:09:28 by jvarila          ###   ########.fr       */
+/*   Created: 2025/06/11 10:05:39 by jvarila           #+#    #+#             */
+/*   Updated: 2025/06/11 11:32:05 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
 
-# include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class DiamondTrap : public ScavTrap, public FragTrap {
 
 public:
 
 // ------------------------------------------------------------ member functions
 
 	void	attack( std::string const &target );
-	void	highFivesGuys( void );
+	void	whoAmI( void );
 
 // ---------------------------------------------------------------- constructors
 
-	FragTrap( void );
-	FragTrap( std::string const &name );
-	FragTrap( FragTrap const &src );
+	DiamondTrap( void );
+	DiamondTrap( std::string const &name );
+	DiamondTrap( DiamondTrap const &src );
 
 // ------------------------------------------------------------------ destructor
-	~FragTrap( void );
+	~DiamondTrap( void );
 // --------------------------------------------------- member operator overloads
 
-	FragTrap &operator = ( FragTrap const &src );
+	DiamondTrap &operator = ( DiamondTrap const &src );
 
 private:
-
+	std::string	_name;
 };
 
 #endif

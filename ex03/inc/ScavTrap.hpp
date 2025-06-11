@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 13:05:55 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/10 13:09:28 by jvarila          ###   ########.fr       */
+/*   Created: 2025/06/10 09:51:02 by jvarila           #+#    #+#             */
+/*   Updated: 2025/06/11 17:56:20 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
 
 public:
 
 // ------------------------------------------------------------ member functions
 
 	void	attack( std::string const &target );
-	void	highFivesGuys( void );
+	void	guardGate( void );
 
 // ---------------------------------------------------------------- constructors
 
-	FragTrap( void );
-	FragTrap( std::string const &name );
-	FragTrap( FragTrap const &src );
+	ScavTrap( void );
+	ScavTrap( std::string const &name );
+	ScavTrap( ScavTrap const &src );
 
 // ------------------------------------------------------------------ destructor
-	~FragTrap( void );
+	~ScavTrap( void );
 // --------------------------------------------------- member operator overloads
 
-	FragTrap &operator = ( FragTrap const &src );
+	ScavTrap &operator = ( ScavTrap const &src );
 
 private:
 
