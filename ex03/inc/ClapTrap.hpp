@@ -20,25 +20,18 @@
 class ClapTrap {
 
 public:
-
 // ------------------------------------------------------------ member functions
-
 	virtual void	attack( std::string const &target );
 	void			takeDamage( unsigned int amount );
 	void			beRepaired( unsigned int amount );
 	void			printInfo( void );
-
-
 // --------------------------------------------------------- public constructors
-
 	ClapTrap( void );
 	ClapTrap( std::string const &name );
 	ClapTrap( ClapTrap const &src );
-
 // ------------------------------------------------------------------ destructor
 	virtual	~ClapTrap( void );
 // --------------------------------------------------- member operator overloads
-
 	ClapTrap &operator = ( ClapTrap const &src );
 
 // Protected means that derived classes can access these members. If they were

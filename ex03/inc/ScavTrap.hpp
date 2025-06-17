@@ -20,26 +20,17 @@
 class ScavTrap : virtual public ClapTrap {
 
 public:
-
 // ------------------------------------------------------------ member functions
-
 	void	attack( std::string const &target );
 	void	guardGate( void );
-
 // ---------------------------------------------------------------- constructors
-
 	ScavTrap( void );
 	ScavTrap( std::string const &name );
 	ScavTrap( ScavTrap const &src );
-
 // ------------------------------------------------------------------ destructor
 	~ScavTrap( void );
 // --------------------------------------------------- member operator overloads
-
 	ScavTrap &operator = ( ScavTrap const &src );
-
-private:
-
 };
 
 #endif

@@ -20,26 +20,17 @@
 class FragTrap : public ClapTrap {
 
 public:
-
 // ------------------------------------------------------------ member functions
-
 	void	attack( std::string const &target );
 	void	highFivesGuys( void );
-
 // ---------------------------------------------------------------- constructors
-
 	FragTrap( void );
 	FragTrap( std::string const &name );
 	FragTrap( FragTrap const &src );
-
 // ------------------------------------------------------------------ destructor
 	~FragTrap( void );
 // --------------------------------------------------- member operator overloads
-
 	FragTrap &operator = ( FragTrap const &src );
-
-private:
-
 };
 
 #endif

@@ -21,22 +21,16 @@
 class DiamondTrap : public ScavTrap, public FragTrap {
 
 public:
-
 // ------------------------------------------------------------ member functions
-
 	void	attack( std::string const &target );
 	void	whoAmI( void );
-
 // ---------------------------------------------------------------- constructors
-
 	DiamondTrap( void );
 	DiamondTrap( std::string const &name );
 	DiamondTrap( DiamondTrap const &src );
-
 // ------------------------------------------------------------------ destructor
 	~DiamondTrap( void );
 // --------------------------------------------------- member operator overloads
-
 	DiamondTrap &operator = ( DiamondTrap const &src );
 
 private:

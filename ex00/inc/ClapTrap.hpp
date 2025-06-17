@@ -20,23 +20,18 @@
 class ClapTrap {
 
 public:
-
 // ------------------------------------------------------------ member functions
 	void	attack( std::string const &target );
 	void	takeDamage( unsigned int amount );
 	void	beRepaired( unsigned int amount );
 	void	printInfo( void );
-
 // ---------------------------------------------------------------- constructors
-
 	ClapTrap( void );
 	ClapTrap( std::string const &name );
 	ClapTrap( ClapTrap const &src );
-
 // ------------------------------------------------------------------ destructor
 	~ClapTrap( void );
 // --------------------------------------------------- member operator overloads
-
 	ClapTrap &operator = ( ClapTrap const &src );
 
 private:
