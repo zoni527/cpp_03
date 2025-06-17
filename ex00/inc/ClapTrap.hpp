@@ -17,14 +17,27 @@
 
 # include <string>
 
+# define CLAPTRAP_HIT_POINTS	10
+# define CLAPTRAP_ENERGY_POINTS	10
+# define CLAPTRAP_ATTACK_DAMAGE	0
+
 class ClapTrap {
 
 public:
 // ------------------------------------------------------------ member functions
-	void	attack( std::string const &target );
-	void	takeDamage( unsigned int amount );
-	void	beRepaired( unsigned int amount );
-	void	printInfo( void );
+	void			attack( std::string const &target );
+	void			takeDamage( unsigned int amount );
+	void			beRepaired( unsigned int amount );
+
+	std::string		getName( void )	const;
+	unsigned int	getHP( void )	const;
+	unsigned int	getEP( void )	const;
+	unsigned int	getAD( void )	const;
+
+	void			setName( std::string const &str );
+	void			setHP( unsigned int hp );
+	void			setEP( unsigned int ep );
+	void			setAD( unsigned int ad );
 // ---------------------------------------------------------------- constructors
 	ClapTrap( void );
 	ClapTrap( std::string const &name );
@@ -36,9 +49,9 @@ public:
 
 private:
 	std::string		_name;
-	unsigned int	_hit_points		= 10;
-	unsigned int	_energy_points	= 10;
-	unsigned int	_attack_damage	= 0;
+	unsigned int	_hit_points		= CLAPTRAP_HIT_POINTS;
+	unsigned int	_energy_points	= CLAPTRAP_ENERGY_POINTS;
+	unsigned int	_attack_damage	= CLAPTRAP_ATTACK_DAMAGE;
 };
 
 #endif

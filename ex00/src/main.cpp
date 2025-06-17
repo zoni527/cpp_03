@@ -11,96 +11,78 @@
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ansi_colors.hpp"
 #include <iostream>
-
-#define YELLOW	"\033[0;93m\001"
-#define RESET	"\033[0m\002"
 
 static std::string	n_chars( char c, size_t n );
 static void			print_test_name( std::string str );
+
+static void print_info( ClapTrap const &a ) {
+	std::cout
+		<< "Name: " << a.getName()
+		<< ", HP: " << a.getHP()
+		<< ", EP: " << a.getEP()
+		<< ", AD: " << a.getAD() << std::endl;
+}
 
 int main( void ) {
 
 	print_test_name( "Test: default costructor" );
 	{
-		std::cout << "ClapTrap a; ->\n";
 		ClapTrap a;
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
+		print_info( a );
 	}
 	print_test_name( "Test: string constructor" );
 	{
-		std::cout << "ClapTrap a( \"DerpyDerp\" ); ->\n";
 		ClapTrap a( "DerpyDerp" );
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
+		print_info( a );
 	}
 	print_test_name( "Test: copy constructor" );
 	{
-		std::cout << "ClapTrap a( \"First\" ); ->\n";
 		ClapTrap a( "First" );
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
-		std::cout << "ClapTrap b( a ); ->\n";
+		print_info( a );
 		ClapTrap b( a );
-		std::cout << "\nb.printInfo(); ->\n";
-		b.printInfo();
+		print_info( b );
 	}
 	print_test_name( "Test: copy assignment operator" );
 	{
-		std::cout << "ClapTrap a( \"First\" ), b( \"Second\" ); ->\n";
 		ClapTrap a( "First" ), b( "Second" );
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
-		std::cout << "\nb.printInfo(); ->\n";
-		b.printInfo();
-		std::cout << "\na = b; ->\n";
+		print_info( a );
+		print_info( b );
 		a = b;
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
-		std::cout << "\nb.printInfo(); ->\n";
-		b.printInfo();
+		print_info( a );
+		print_info( b );
+		b.setHP( 0 );
+		print_info( a );
+		print_info( b );
 	}
 	print_test_name( "Test: attack" );
 	{
-		std::cout << "ClapTrap a; ->\n";
 		ClapTrap a;
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
-		std::cout << "\na.attack( \"YOU\" ); ->\n";
+		print_info( a );
 		a.attack( "YOU" );
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
+		print_info( a );
+		a.setHP( 0 );
+		a.attack( "YOU" );
+		a.setHP( 1 );
+		a.setEP( 0 );
+		a.attack( "YOU" );
 	}
 	print_test_name( "Test: takeDamage" );
 	{
-		std::cout << "ClapTrap a; ->\n";
 		ClapTrap a;
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
-		std::cout << "\na.takeDamage( 5 ); ->\n";
 		a.takeDamage( 5 );
-		std::cout << "\na.printInfo() ->\n";
-		a.printInfo();
-		std::cout << "\na.takeDamage( -1 ); ->\n";
+		a.setHP( 10 );
 		a.takeDamage( -1 );
-		std::cout << "\na.printInfo() ->\n";
-		a.printInfo();
+		a.setHP( 10 );
+		a.takeDamage( 6 );
 	}
 	print_test_name( "Test: beRepaired" );
 	{
-		std::cout << "ClapTrap a; ->\n";
 		ClapTrap a;
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
-		std::cout << "\na.beRepaired( 5 ); ->\n";
+		a.setHP( 0 );
 		a.beRepaired( 5 );
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
-		std::cout << "\na.beRepaired( -1 ); ->\n";
 		a.beRepaired( -1 );
-		std::cout << "\na.printInfo(); ->\n";
-		a.printInfo();
 	}
 	std::cout << std::endl;
 	return 0;
@@ -116,9 +98,9 @@ static void print_test_name( std::string str ) {
 	size_t width = str.length() + 10;
 
 	std::string separator = n_chars( '-', width );
-	std::cout << "\n" YELLOW << separator << "\n";
+	std::cout << "\n" C_HI_Y << separator << "\n";
 	std::cout << "**** " << str << " ****";
-	std::cout << "\n" << separator << RESET "\n";
+	std::cout << "\n" << separator << C_RST "\n";
 	std::cout << std::endl;
 }
 

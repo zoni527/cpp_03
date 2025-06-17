@@ -11,110 +11,131 @@
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ansi_colors.hpp"
 #include <iostream>
 #include <climits>
-
-#define BPURPLE		"\033[1;35m\001"
-#define BHIPURPLE	"\033[1;95m\001"
-#define RESET		"\033[0m\002"
-
-const std::string	clap_trap_str = BPURPLE "ClapTrap" RESET;
+const std::string	clap_trap_str = C_B_P "ClapTrap" C_RST;
 
 // ------------------------------------------------------------ member functions
 
+std::string ClapTrap:: getName( void ) const {
+	return _name;
+}
+
+unsigned int ClapTrap:: getHP( void ) const {
+	return _hit_points;
+}
+
+unsigned int ClapTrap:: getEP( void ) const {
+	return _energy_points;
+}
+
+unsigned int ClapTrap:: getAD( void ) const {
+	return _attack_damage;
+}
+
+void ClapTrap:: setName( std::string const &str ) {
+	_name = str;
+}
+
+void ClapTrap:: setHP( unsigned int hp ) {
+	_hit_points = hp;
+}
+
+void ClapTrap:: setEP( unsigned int ep ) {
+	_energy_points = ep;
+}
+
+void ClapTrap:: setAD( unsigned int ad ) {
+	_energy_points = ad;
+}
+
 void ClapTrap:: attack( std::string const &target ) {
 
-	if ( _energy_points == 0 ) {
+	if ( _hit_points == 0 ) {
 		std::cout
-			<< clap_trap_str + " " << _name << " is out of energy, can't attack "
+			<< clap_trap_str + "	" << _name << " is KO, can't attack "
 			<< target << std::endl;
 		return;
 	}
-
+	if ( _energy_points == 0 ) {
+		std::cout
+			<< clap_trap_str + "	" << _name << " is out of energy, can't attack "
+			<< target << std::endl;
+		return;
+	}
 	--_energy_points;
 	std::cout
-		<< clap_trap_str + " " << _name << " attacks " << target
-		<< ", causing " << _attack_damage << " points of damage!" << std::endl;
+		<< clap_trap_str + "	" << _name << " attacks " << target
+		<< ", causing " << _attack_damage << " points of damage! It has "
+		<< _energy_points << " energy points left" << std::endl;
 }
 
 void ClapTrap:: takeDamage( unsigned int amount ) {
 
+	if ( _hit_points == 0 ) {
+		std::cout
+			<< clap_trap_str + "	" << _name << " is already KO, don't beat a dead horse!"
+			<< std::endl;
+		return;
+	}
 	if ( amount >= _hit_points ) {
 		_hit_points = 0;
 		std::cout
-			<< clap_trap_str + " " << _name << " has taken " << amount
-			<< " points of damage and is now dead, RIP" << std::endl;
+			<< clap_trap_str + "	" << _name << " has taken " << amount
+			<< " points of damage and is now KO" << std::endl;
 		return;
 	}
-
 	_hit_points -= amount;
 	std::cout
-		<< clap_trap_str + " " << _name << " has taken " << amount
-		<< " points of damage and now has " << _hit_points << " hit points"
+		<< clap_trap_str + "	" << _name << " has taken " << amount
+		<< " points of damage and now has " << _hit_points << " hit points left"
 		<< std::endl;
 }
 
 void ClapTrap:: beRepaired( unsigned int amount ) {
 
-	if ( _hit_points > UINT_MAX - amount ) {
-		_hit_points = UINT_MAX;
+	if (	_hit_points > UINT_MAX - amount
+		||	_hit_points > CLAPTRAP_HIT_POINTS - amount ) {
+		_hit_points = CLAPTRAP_HIT_POINTS;
 		std::cout
-			<< clap_trap_str + " " << _name << " has been repaired by " << amount
-			<< " hit points and it now has UINT_MAX points of health" << std::endl;
+			<< clap_trap_str + "	" << _name << " has been repaired by " << amount
+			<< " hit points and it now has " << _hit_points << " points of health"
+			<< std::endl;
 		return;
 	}
-
 	_hit_points += amount;
 	std::cout
-		<< clap_trap_str + " " << _name << " has been repaired by " << amount
+		<< clap_trap_str + "	" << _name << " has been repaired by " << amount
 		<< " hit points and it now has " << _hit_points << " points of health"
 		<< std::endl;
 }
 
-void ClapTrap:: printInfo( void ) {
-	std::cout << "Name:		" << _name << "\n";
-	std::cout << "Hit points:	" << _hit_points << "\n";
-	std::cout << "Energy points:	" << _energy_points << "\n";
-	std::cout << "Attack damage:	" << _attack_damage << "\n";
-	std::cout << std::endl;
-}
-
 // ---------------------------------------------------------------- constructors
 
-ClapTrap:: ClapTrap( void ) : _name( BHIPURPLE "sane_default" RESET ) {
-	std::cout << clap_trap_str + " default constructor called\n";
-	std::cout
-		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+ClapTrap:: ClapTrap( void ) : _name( C_B_HI_P "sane_default" C_RST ) {
+	std::cout << clap_trap_str + "	default constructor called" << std::endl;
 }
 
-ClapTrap:: ClapTrap( std::string const &name ) : _name( BHIPURPLE + name + RESET ) {
-	std::cout << clap_trap_str + " string constructor called\n";
-	std::cout
-		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+ClapTrap:: ClapTrap( std::string const &name ) : _name( C_B_HI_P + name + C_RST ) {
+	std::cout << clap_trap_str + "	string constructor called" << std::endl;
 }
 
-ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( BHIPURPLE + src._name + RESET ) {
-	std::cout << clap_trap_str + " copy constructor called\n";
-	std::cout
-		<< "A " + clap_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( C_B_HI_P + src._name + C_RST ) {
+	std::cout << clap_trap_str + "	copy constructor called" << std::endl;
 }
 
 // ------------------------------------------------------------------ destructor
 
 ClapTrap:: ~ClapTrap( void ) {
-	std::cout << clap_trap_str + " destructor called\n";
-	std::cout
-		<< "A " + clap_trap_str + " named " << _name << " has left the map" << std::endl;
+	std::cout << clap_trap_str + "	destructor called" << std::endl;
 }
 
 // --------------------------------------------------- member operator overloads
 
 ClapTrap &ClapTrap:: operator = ( ClapTrap const &src ) {
 
-	std::cout << clap_trap_str + " assignment operator called" << std::endl;
+	std::cout << clap_trap_str + "	assignment operator called" << std::endl;
 	if ( this == &src )
 		return *this;
 	_name = src._name;
