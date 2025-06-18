@@ -50,19 +50,12 @@ public:
 // Protected means that derived classes can access these members. If they were
 // private the only way to access them would be through setters and getters.
 protected:
-
-	// Utility constructor
-	ClapTrap(	std::string const &name,
-				unsigned int hit_points,
-				unsigned int energy_points,
-				unsigned int attack_damage);
-
 	std::string		_name;
 	unsigned int	_hit_points		= CLAPTRAP_HIT_POINTS;
 	unsigned int	_energy_points	= CLAPTRAP_ENERGY_POINTS;
 	unsigned int	_attack_damage	= CLAPTRAP_ATTACK_DAMAGE;
-	unsigned int	_max_hp;
-	unsigned int	_max_ep;
+	unsigned int	_max_hp			= CLAPTRAP_HIT_POINTS;
+	unsigned int	_max_ep			= CLAPTRAP_ENERGY_POINTS;
 };
 
 #endif

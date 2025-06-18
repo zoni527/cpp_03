@@ -115,16 +115,12 @@ void ClapTrap:: beRepaired( unsigned int amount ) {
 // ---------------------------------------------------------------- constructors
 
 ClapTrap:: ClapTrap( void )
-:	_name( C_B_HI_P "sane_default" C_RST ),
-	_max_hp( CLAPTRAP_HIT_POINTS ),
-	_max_ep( CLAPTRAP_ENERGY_POINTS ) {
+: _name( C_B_HI_P "sane_default" C_RST ) {
 	std::cout << clap_trap_str + "	default constructor called" << std::endl;
 }
 
 ClapTrap:: ClapTrap( std::string const &name )
-:	_name( C_B_HI_P + name + C_RST ),
-	_max_hp( CLAPTRAP_HIT_POINTS ),
-	_max_ep( CLAPTRAP_ENERGY_POINTS ) {
+: _name( C_B_HI_P + name + C_RST ) {
 	std::cout << clap_trap_str + "	string constructor called" << std::endl;
 }
 
@@ -136,19 +132,6 @@ ClapTrap:: ClapTrap( ClapTrap const &src )
 	_max_hp( src._max_hp ),
 	_max_ep( src._max_ep ) {
 	std::cout << clap_trap_str + "	copy constructor called" << std::endl;
-}
-
-ClapTrap:: ClapTrap(	std::string const	&name,
-						unsigned int		hit_points,
-						unsigned int		energy_points,
-						unsigned int		attack_damage )
-:	_name( C_B_HI_P + name + C_RST ),
-	_hit_points( hit_points ),
-	_energy_points( energy_points ),
-	_attack_damage(attack_damage),
-	_max_hp( hit_points ),
-	_max_ep( energy_points ){
-	std::cout << clap_trap_str + "	utility constructor called" << std::endl;
 }
 
 // ------------------------------------------------------------------ destructor

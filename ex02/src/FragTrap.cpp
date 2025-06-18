@@ -47,24 +47,40 @@ void	FragTrap:: highFivesGuys( void ) {
 // ---------------------------------------------------------------- constructors
 
 FragTrap:: FragTrap( void )
-: ClapTrap(	C_B_HI_R "sane_default" C_RST,
-			FRAGTRAP_HIT_POINTS,
-			FRAGTRAP_ENERGY_POINTS,
-			FRAGTRAP_ATTACK_DAMAGE ) {
+: ClapTrap( C_B_HI_R "sane_default" C_RST ) {
+
 	std::cout << frag_trap_str << "	default constructor called" << std::endl;
+	_hit_points		= _max_hp	= FRAGTRAP_HIT_POINTS;
+	_energy_points	= _max_ep	= FRAGTRAP_ENERGY_POINTS;
+	_attack_damage	= FRAGTRAP_ATTACK_DAMAGE;
 }
 
 FragTrap:: FragTrap( std::string const &name )
-: ClapTrap(	C_B_HI_R + name + C_RST,
-			FRAGTRAP_HIT_POINTS,
-			FRAGTRAP_ENERGY_POINTS,
-			FRAGTRAP_ATTACK_DAMAGE ) {
+: ClapTrap( C_B_HI_R + name + C_RST ) {
+
 	std::cout << frag_trap_str << "	string constructor called" << std::endl;
+	_name			= C_B_HI_R + name + C_RST;
+	_hit_points		= _max_hp	= FRAGTRAP_HIT_POINTS;
+	_energy_points	= _max_ep	= FRAGTRAP_ENERGY_POINTS;
+	_attack_damage				= FRAGTRAP_ATTACK_DAMAGE;
+
 }
 
 FragTrap:: FragTrap( FragTrap const &src )
-: ClapTrap( src ) {
+: ClapTrap( C_B_HI_R + src._name + C_RST ) {
+
 	std::cout << frag_trap_str << "	copy constructor called" << std::endl;
+	if ( src._hit_points > FRAGTRAP_HIT_POINTS )
+		_hit_points = FRAGTRAP_HIT_POINTS;
+	else
+		_hit_points = src._hit_points;
+	if ( src._energy_points > FRAGTRAP_ENERGY_POINTS )
+		_energy_points = FRAGTRAP_ENERGY_POINTS;
+	else
+		_energy_points = src._energy_points;
+	_attack_damage = FRAGTRAP_ATTACK_DAMAGE;
+	_max_hp = FRAGTRAP_HIT_POINTS;
+	_max_ep = FRAGTRAP_ENERGY_POINTS;
 }
 
 // ------------------------------------------------------------------ destructor

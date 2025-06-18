@@ -32,27 +32,41 @@ void DiamondTrap:: whoAmI( void ) {
 // ---------------------------------------------------------------- constructors
 
 DiamondTrap:: DiamondTrap( void )
-:	ClapTrap(	C_B_HI_P "sane_default_clap_name" C_RST,
-				FRAGTRAP_HIT_POINTS,
-				SCAVTRAP_ENERGY_POINTS,
-				FRAGTRAP_ATTACK_DAMAGE ),
-	_name( C_B_HI_Y "sane_default" C_RST ) {
-	std::cout << diamond_trap_str + "	default constructor called" << std::endl;
+: ClapTrap( C_B_HI_P "sane_default_clap_name" C_RST ) {
+
+	std::cout << diamond_trap_str << "	default constructor called" << std::endl;
+	_hit_points		= _max_hp	= FRAGTRAP_HIT_POINTS;
+	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
+	_attack_damage	= FRAGTRAP_ATTACK_DAMAGE;
 }
 
 DiamondTrap:: DiamondTrap( std::string const &name )
-: ClapTrap( C_B_HI_P + name + "_clap_name" + C_RST, 100, 50, 30 ),
-_name( C_B_HI_Y + name + C_RST ) {
-	std::cout << diamond_trap_str + "	string constructor called" << std::endl;
+: ClapTrap( C_B_HI_P + name + "_clap_name" + C_RST ) {
+
+	std::cout << diamond_trap_str << "	string constructor called" << std::endl;
+	_name			= C_B_HI_Y + name + C_RST;
+	_hit_points		= _max_hp	= FRAGTRAP_HIT_POINTS;
+	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
+	_attack_damage				= FRAGTRAP_ATTACK_DAMAGE;
+
 }
 
 DiamondTrap:: DiamondTrap( DiamondTrap const &src )
-:	ClapTrap(	src._name, 
-				FRAGTRAP_HIT_POINTS,
-				SCAVTRAP_ENERGY_POINTS,
-				FRAGTRAP_ATTACK_DAMAGE ) {
-	ClapTrap:: _name = src.ClapTrap::_name;
-	std::cout << diamond_trap_str + "	copy constructor called" << std::endl;
+: ClapTrap( C_B_HI_P + src._name + "_clap_name" + C_RST ) {
+
+	std::cout << diamond_trap_str << "	copy constructor called" << std::endl;
+	_name = src._name;
+	if ( src._hit_points > FRAGTRAP_HIT_POINTS )
+		_hit_points = FRAGTRAP_HIT_POINTS;
+	else
+		_hit_points = src._hit_points;
+	if ( src._energy_points > SCAVTRAP_ENERGY_POINTS )
+		_energy_points = SCAVTRAP_ENERGY_POINTS;
+	else
+		_energy_points = src._energy_points;
+	_attack_damage = FRAGTRAP_ATTACK_DAMAGE;
+	_max_hp = FRAGTRAP_HIT_POINTS;
+	_max_ep = SCAVTRAP_ENERGY_POINTS;
 }
 
 // ------------------------------------------------------------------ destructor

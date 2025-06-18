@@ -78,6 +78,7 @@ int main( void ) {
 		a.setHP( 1 );
 		a.setEP( 0 );
 		a.attack( "YOU" );
+		std::cout << "\n";
 	}
 	print_test_name( "Test: takeDamage" );
 	{

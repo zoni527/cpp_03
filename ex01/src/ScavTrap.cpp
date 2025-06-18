@@ -41,6 +41,7 @@ void	ScavTrap:: attack( std::string const &target ) {
 }
 
 void	ScavTrap:: guardGate( void ) {
+
 	std::cout
 		<< scav_trap_str + "	" << _name << " is now in Gate keeper mode" << std::endl;
 }
@@ -48,29 +49,44 @@ void	ScavTrap:: guardGate( void ) {
 // ---------------------------------------------------------------- constructors
 
 ScavTrap:: ScavTrap( void )
-: ClapTrap(	C_B_HI_C "sane_default" C_RST,
-			SCAVTRAP_HIT_POINTS,
-			SCAVTRAP_ENERGY_POINTS,
-			SCAVTRAP_ATTACK_DAMAGE) {
+: ClapTrap( C_B_HI_C "sane_default" C_RST ) {
+
 	std::cout << scav_trap_str + "	default constructor called" << std::endl;
+	_hit_points		= _max_hp	= SCAVTRAP_HIT_POINTS;
+	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
+	_attack_damage	= SCAVTRAP_ATTACK_DAMAGE;
 }
 
 ScavTrap:: ScavTrap( std::string const &name )
-: ClapTrap(	C_B_HI_C + name + C_RST,
-			SCAVTRAP_HIT_POINTS,
-			SCAVTRAP_ENERGY_POINTS,
-			SCAVTRAP_ATTACK_DAMAGE ) {
+: ClapTrap( C_B_HI_C + name + C_RST ) {
+
 	std::cout << scav_trap_str + "	string constructor called" << std::endl;
+	_hit_points		= _max_hp	= SCAVTRAP_HIT_POINTS;
+	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
+	_attack_damage				= SCAVTRAP_ATTACK_DAMAGE;
 }
 
 ScavTrap:: ScavTrap( ScavTrap const &src )
-: ClapTrap( src ) {
+: ClapTrap( C_B_HI_C + src._name + C_RST ) {
+
 	std::cout << scav_trap_str + "	copy constructor called" << std::endl;
+	if ( src._hit_points > SCAVTRAP_HIT_POINTS )
+		_hit_points = SCAVTRAP_HIT_POINTS;
+	else
+		_hit_points = src._hit_points;
+	if ( src._energy_points > SCAVTRAP_ENERGY_POINTS )
+		_energy_points = SCAVTRAP_ENERGY_POINTS;
+	else
+		_energy_points = src._energy_points;
+	_attack_damage = SCAVTRAP_ATTACK_DAMAGE;
+	_max_hp = SCAVTRAP_HIT_POINTS;
+	_max_ep = SCAVTRAP_ENERGY_POINTS;
 }
 
 // ------------------------------------------------------------------ destructor
 
 ScavTrap:: ~ScavTrap( void ) {
+
 	std::cout << scav_trap_str + "	destructor called" << std::endl;
 }
 
