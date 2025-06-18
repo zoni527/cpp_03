@@ -16,54 +16,65 @@
 
 static std::string	n_chars( char c, size_t n );
 static void			print_test_name( std::string str );
-
-static void print_info( ClapTrap const &a ) {
-	std::cout
-		<< "Name: " << a.getName()
-		<< ", HP: " << a.getHP()
-		<< ", EP: " << a.getEP()
-		<< ", AD: " << a.getAD() << std::endl;
-}
+static void print_info( ClapTrap const &a );
 
 int main( void ) {
 
 	print_test_name( "Test: default costructor" );
 	{
 		ClapTrap a;
+		std::cout << "\n";
 		print_info( a );
+		std::cout << "\n";
 	}
 	print_test_name( "Test: string constructor" );
 	{
 		ClapTrap a( "DerpyDerp" );
+		std::cout << "\n";
 		print_info( a );
+		std::cout << "\n";
 	}
 	print_test_name( "Test: copy constructor" );
 	{
 		ClapTrap a( "First" );
+		std::cout << "\n";
 		print_info( a );
+		std::cout << "\n";
 		ClapTrap b( a );
+		std::cout << "\n";
 		print_info( b );
+		std::cout << "\n";
 	}
 	print_test_name( "Test: copy assignment operator" );
 	{
 		ClapTrap a( "First" ), b( "Second" );
+		std::cout << "\n";
 		print_info( a );
 		print_info( b );
+		std::cout << "\n";
 		a = b;
+		std::cout << "\n";
 		print_info( a );
 		print_info( b );
+		std::cout << "\n";
 		b.setHP( 0 );
 		print_info( a );
 		print_info( b );
+		std::cout << "\n";
 	}
 	print_test_name( "Test: attack" );
 	{
 		ClapTrap a;
+		std::cout << "\n";
 		print_info( a );
+		std::cout << "\n";
 		a.attack( "YOU" );
+		std::cout << "\n";
 		print_info( a );
+		std::cout << "\n";
 		a.setHP( 0 );
 		a.attack( "YOU" );
+		std::cout << "\n";
 		a.setHP( 1 );
 		a.setEP( 0 );
 		a.attack( "YOU" );
@@ -71,18 +82,26 @@ int main( void ) {
 	print_test_name( "Test: takeDamage" );
 	{
 		ClapTrap a;
+		std::cout << "\n";
 		a.takeDamage( 5 );
+		std::cout << "\n";
 		a.setHP( 10 );
 		a.takeDamage( -1 );
+		a.takeDamage( 1 );
+		std::cout << "\n";
 		a.setHP( 10 );
 		a.takeDamage( 6 );
+		std::cout << "\n";
 	}
 	print_test_name( "Test: beRepaired" );
 	{
 		ClapTrap a;
+		std::cout << "\n";
 		a.setHP( 0 );
 		a.beRepaired( 5 );
+		std::cout << "\n";
 		a.beRepaired( -1 );
+		std::cout << "\n";
 	}
 	std::cout << std::endl;
 	return 0;
@@ -109,4 +128,12 @@ static std::string n_chars( char c, size_t n ) {
 	while ( n-- )
 		str += c;
 	return str;
+}
+
+static void print_info( ClapTrap const &a ) {
+	std::cout
+		<< "Name: " << a.getName()
+		<< ", HP: " << a.getHP()
+		<< ", EP: " << a.getEP()
+		<< ", AD: " << a.getAD() << std::endl;
 }

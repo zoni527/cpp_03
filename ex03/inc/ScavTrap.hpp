@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 09:51:02 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/11 17:56:20 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/06/10 10:21:35 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # define SCAVTRAP_HPP
 
 # include "ClapTrap.hpp"
+
+# define SCAVTRAP_HIT_POINTS	100
+# define SCAVTRAP_ENERGY_POINTS	50
+# define SCAVTRAP_ATTACK_DAMAGE	20
 
 class ScavTrap : virtual public ClapTrap {
 

@@ -61,6 +61,8 @@ protected:
 	unsigned int	_hit_points		= CLAPTRAP_HIT_POINTS;
 	unsigned int	_energy_points	= CLAPTRAP_ENERGY_POINTS;
 	unsigned int	_attack_damage	= CLAPTRAP_ATTACK_DAMAGE;
+	unsigned int	_max_hp			= CLAPTRAP_HIT_POINTS;
+	unsigned int	_max_ep			= CLAPTRAP_ENERGY_POINTS;
 };
 
 #endif

@@ -67,7 +67,7 @@ void ClapTrap:: attack( std::string const &target ) {
 	--_energy_points;
 	std::cout
 		<< clap_trap_str + "	" << _name << " attacks " << target
-		<< ", causing " << _attack_damage << " points of damage! It has "
+		<< ", causing " << _attack_damage << " points of damage! It now has "
 		<< _energy_points << " energy points left" << std::endl;
 }
 
@@ -95,16 +95,10 @@ void ClapTrap:: takeDamage( unsigned int amount ) {
 
 void ClapTrap:: beRepaired( unsigned int amount ) {
 
-	if (	_hit_points > UINT_MAX - amount
-		||	_hit_points > CLAPTRAP_HIT_POINTS - amount ) {
+	if ( amount > CLAPTRAP_HIT_POINTS || amount > CLAPTRAP_HIT_POINTS - _hit_points )
 		_hit_points = CLAPTRAP_HIT_POINTS;
-		std::cout
-			<< clap_trap_str + "	" << _name << " has been repaired by " << amount
-			<< " hit points and it now has " << _hit_points << " points of health"
-			<< std::endl;
-		return;
-	}
-	_hit_points += amount;
+	else
+		_hit_points += amount;
 	std::cout
 		<< clap_trap_str + "	" << _name << " has been repaired by " << amount
 		<< " hit points and it now has " << _hit_points << " points of health"

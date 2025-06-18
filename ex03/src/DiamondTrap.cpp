@@ -11,15 +11,11 @@
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
+#include "ansi_colors.hpp"
 #include <iostream>
 
-#define BYELLOW		"\033[1;33m\001"
-#define BPURPLE		"\033[1;35m\001"
-#define BHIYELLOW	"\033[1;93m\001"
-#define RESET		"\033[0m\002"
-
-const std::string	diamond_trap_str = BYELLOW "DiamondTrap" RESET;
-const std::string	clap_trap_str = BPURPLE "ClapTrap" RESET;
+const std::string	diamond_trap_str = C_B_Y "DiamondTrap" C_RST;
+const std::string	clap_trap_str = C_B_P "ClapTrap" C_RST;
 
 // ------------------------------------------------------------ member functions
 
@@ -29,51 +25,47 @@ void DiamondTrap:: attack( std::string const &target ) {
 
 void DiamondTrap:: whoAmI( void ) {
 	std::cout
-		<< "My " + diamond_trap_str + " name is " + _name << "\n"
+		<< "My " + diamond_trap_str + " name is " + _name << "" << std::endl
 		<< "My " + clap_trap_str + " name is " + ClapTrap:: _name << std::endl;
 }
 
 // ---------------------------------------------------------------- constructors
 
 DiamondTrap:: DiamondTrap( void )
-: ClapTrap( BPURPLE "sane_default_clap_name" RESET, 100, 50, 30 ),
-	_name( BHIYELLOW "sane_default" RESET ) {
-	std::cout << diamond_trap_str + " default constructor called\n";
-	std::cout
-		<< "A " + diamond_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+:	ClapTrap(	C_B_HI_P "sane_default_clap_name" C_RST,
+				FRAGTRAP_HIT_POINTS,
+				SCAVTRAP_ENERGY_POINTS,
+				FRAGTRAP_ATTACK_DAMAGE ),
+	_name( C_B_HI_Y "sane_default" C_RST ) {
+	std::cout << diamond_trap_str + "	default constructor called" << std::endl;
 }
 
 DiamondTrap:: DiamondTrap( std::string const &name )
-: ClapTrap( BPURPLE + name + "_clap_name" + RESET, 100, 50, 30 ) {
-	std::cout << diamond_trap_str + " string constructor called\n";
-	std::cout
-		<< "A " + diamond_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+: ClapTrap( C_B_HI_P + name + "_clap_name" + C_RST, 100, 50, 30 ),
+_name( C_B_HI_Y + name + C_RST ) {
+	std::cout << diamond_trap_str + "	string constructor called" << std::endl;
 }
 
 DiamondTrap:: DiamondTrap( DiamondTrap const &src )
-: ClapTrap( src ), _name( src._name ) {
+:	ClapTrap(	src._name, 
+				FRAGTRAP_HIT_POINTS,
+				SCAVTRAP_ENERGY_POINTS,
+				FRAGTRAP_ATTACK_DAMAGE ) {
 	ClapTrap:: _name = src.ClapTrap::_name;
-	std::cout << diamond_trap_str + " copy constructor called\n";
-	std::cout
-		<< "A " + diamond_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+	std::cout << diamond_trap_str + "	copy constructor called" << std::endl;
 }
 
 // ------------------------------------------------------------------ destructor
 
 DiamondTrap:: ~DiamondTrap( void ) {
-	std::cout << diamond_trap_str + " destructor called\n";
-	std::cout
-		<< "A " + diamond_trap_str + " named " << _name << " has left the map" << std::endl;
+	std::cout << diamond_trap_str + "	destructor called" << std::endl;
 }
 
 // --------------------------------------------------- member operator overloads
 
 DiamondTrap &DiamondTrap:: operator = ( DiamondTrap const &src ) {
 
-	std::cout << diamond_trap_str + " assignment operator called" << std::endl;
+	std::cout << diamond_trap_str + "	assignment operator called" << std::endl;
 	if ( this == &src )
 		return *this;
 	ClapTrap:: operator=( src );

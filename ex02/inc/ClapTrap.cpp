@@ -102,10 +102,16 @@ void ClapTrap:: takeDamage( unsigned int amount ) {
 
 void ClapTrap:: beRepaired( unsigned int amount ) {
 
-	if ( amount > _max_hp || amount > _max_hp - _hit_points )
+	if (	_hit_points > UINT_MAX - amount
+		||	_hit_points > _max_hp - amount ) {
 		_hit_points = _max_hp;
-	else
-		_hit_points += amount;
+		std::cout
+			<< clap_trap_str + "	" << _name << " has been repaired by " << amount
+			<< " hit points and it now has " << _hit_points << " points of health"
+			<< std::endl;
+		return;
+	}
+	_hit_points += amount;
 	std::cout
 		<< clap_trap_str + "	" << _name << " has been repaired by " << amount
 		<< " hit points and it now has " << _hit_points << " points of health"
@@ -128,13 +134,7 @@ ClapTrap:: ClapTrap( std::string const &name )
 	std::cout << clap_trap_str + "	string constructor called" << std::endl;
 }
 
-ClapTrap:: ClapTrap( ClapTrap const &src )
-:	_name( C_B_HI_P + src._name + C_RST ),
-	_hit_points( src._hit_points ),
-	_energy_points( src._energy_points ),
-	_attack_damage( src._attack_damage ),
-	_max_hp( src._max_hp ),
-	_max_ep( src._max_ep ) {
+ClapTrap:: ClapTrap( ClapTrap const &src ) : _name( C_B_HI_P + src._name + C_RST ) {
 	std::cout << clap_trap_str + "	copy constructor called" << std::endl;
 }
 

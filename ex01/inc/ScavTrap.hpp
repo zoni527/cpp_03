@@ -17,6 +17,10 @@
 
 # include "ClapTrap.hpp"
 
+# define SCAVTRAP_HIT_POINTS	100
+# define SCAVTRAP_ENERGY_POINTS	50
+# define SCAVTRAP_ATTACK_DAMAGE	20
+
 class ScavTrap : public ClapTrap {
 
 public:

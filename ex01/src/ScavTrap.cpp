@@ -11,75 +11,74 @@
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "ansi_colors.hpp"
 #include <iostream>
 
-#define BCYAN	"\033[1;36m\001"
-#define BHICYAN	"\033[1;96m\001"
-#define RESET	"\033[0m\002"
 
-const std::string	scav_trap_str = BCYAN "ScavTrap" RESET;
+const std::string	scav_trap_str = C_B_C "ScavTrap" C_RST;
 
 // ------------------------------------------------------------ member functions
 
 void	ScavTrap:: attack( std::string const &target ) {
 
-	if ( _energy_points == 0 ) {
+	if ( _hit_points == 0 ) {
 		std::cout
-			<< scav_trap_str + " " << _name << " is out of energy, can't attack "
+			<< scav_trap_str + "	" << _name << " is KO, can't attack "
 			<< target << std::endl;
 		return;
 	}
-
+	if ( _energy_points == 0 ) {
+		std::cout
+			<< scav_trap_str + "	" << _name << " is out of energy, can't attack "
+			<< target << std::endl;
+		return;
+	}
 	--_energy_points;
 	std::cout
-		<< scav_trap_str + " " << _name << " attacks " << target
-		<< ", causing " << _attack_damage << " points of damage!" << std::endl;
+		<< scav_trap_str + "	" << _name << " attacks " << target
+		<< ", causing " << _attack_damage << " points of damage! It has "
+		<< _energy_points << " energy points left" << std::endl;
 }
 
 void	ScavTrap:: guardGate( void ) {
 	std::cout
-		<< scav_trap_str + " " << _name << " is now in Gate keeper mode" << std::endl;
+		<< scav_trap_str + "	" << _name << " is now in Gate keeper mode" << std::endl;
 }
 
 // ---------------------------------------------------------------- constructors
 
 ScavTrap:: ScavTrap( void )
-: ClapTrap( BHICYAN "sane_default" RESET, 100, 50, 20) {
-	std::cout << scav_trap_str + " default constructor called\n";
-	std::cout
-		<< "A " + scav_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+: ClapTrap(	C_B_HI_C "sane_default" C_RST,
+			SCAVTRAP_HIT_POINTS,
+			SCAVTRAP_ENERGY_POINTS,
+			SCAVTRAP_ATTACK_DAMAGE) {
+	std::cout << scav_trap_str + "	default constructor called" << std::endl;
 }
 
 ScavTrap:: ScavTrap( std::string const &name )
-: ClapTrap( BHICYAN + name + RESET, 100, 50, 20 ) {
-	std::cout << scav_trap_str + " string constructor called\n";
-	std::cout
-		<< "A " + scav_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+: ClapTrap(	C_B_HI_C + name + C_RST,
+			SCAVTRAP_HIT_POINTS,
+			SCAVTRAP_ENERGY_POINTS,
+			SCAVTRAP_ATTACK_DAMAGE ) {
+	std::cout << scav_trap_str + "	string constructor called" << std::endl;
 }
 
 ScavTrap:: ScavTrap( ScavTrap const &src )
 : ClapTrap( src ) {
-	std::cout << scav_trap_str + " copy constructor called\n";
-	std::cout
-		<< "A " + scav_trap_str + " named " << _name << " has spawned into the map"
-		<< std::endl;
+	std::cout << scav_trap_str + "	copy constructor called" << std::endl;
 }
 
 // ------------------------------------------------------------------ destructor
 
 ScavTrap:: ~ScavTrap( void ) {
-	std::cout << scav_trap_str + " destructor called\n";
-	std::cout
-		<< "A " + scav_trap_str + " named " << _name << " has left the map" << std::endl;
+	std::cout << scav_trap_str + "	destructor called" << std::endl;
 }
 
 // --------------------------------------------------- member operator overloads
 
 ScavTrap &ScavTrap:: operator = ( ScavTrap const &src ) {
 
-	std::cout << scav_trap_str + " assignment operator called" << std::endl;
+	std::cout << scav_trap_str + "	assignment operator called" << std::endl;
 	if ( this == &src )
 		return *this;
 	ClapTrap:: operator=( src );
