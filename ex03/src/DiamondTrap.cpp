@@ -35,6 +35,7 @@ DiamondTrap:: DiamondTrap( void )
 : ClapTrap( C_B_HI_P "sane_default_clap_name" C_RST ) {
 
 	std::cout << diamond_trap_str << "	default constructor called" << std::endl;
+	_name = C_B_HI_Y "sane_default" C_RST;
 	_hit_points		= _max_hp	= FRAGTRAP_HIT_POINTS;
 	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
 	_attack_damage	= FRAGTRAP_ATTACK_DAMAGE;
@@ -48,11 +49,10 @@ DiamondTrap:: DiamondTrap( std::string const &name )
 	_hit_points		= _max_hp	= FRAGTRAP_HIT_POINTS;
 	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
 	_attack_damage				= FRAGTRAP_ATTACK_DAMAGE;
-
 }
 
 DiamondTrap:: DiamondTrap( DiamondTrap const &src )
-: ClapTrap( C_B_HI_P + src._name + "_clap_name" + C_RST ) {
+: ClapTrap( src._name + C_B_HI_P "_clap_name" + C_RST ), ScavTrap(), FragTrap() {
 
 	std::cout << diamond_trap_str << "	copy constructor called" << std::endl;
 	_name = src._name;
