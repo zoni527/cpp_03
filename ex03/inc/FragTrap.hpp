@@ -17,9 +17,9 @@
 
 # include "ClapTrap.hpp"
 
-# define FRAGTRAP_HIT_POINTS	100
-# define FRAGTRAP_ENERGY_POINTS	100
-# define FRAGTRAP_ATTACK_DAMAGE	50
+# define FRAGTRAP_HP	100
+# define FRAGTRAP_EP	100
+# define FRAGTRAP_AD	50
 
 class FragTrap : virtual public ClapTrap {
 

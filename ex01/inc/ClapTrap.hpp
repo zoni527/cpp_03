@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:59:34 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/17 15:50:20 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/06/09 18:13:01 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 # include <string>
 
-# define CLAPTRAP_HIT_POINTS	10
-# define CLAPTRAP_ENERGY_POINTS	10
-# define CLAPTRAP_ATTACK_DAMAGE	0
+# define CLAPTRAP_HP	10
+# define CLAPTRAP_EP	10
+# define CLAPTRAP_AD	0
 
 class ClapTrap {
 
@@ -47,15 +47,15 @@ public:
 // --------------------------------------------------- member operator overloads
 	ClapTrap &operator = ( ClapTrap const &src );
 
-// Protected means that derived classes can access these members. If they were
-// private the only way to access them would be through setters and getters.
+// Needs to be protected instead of private so that the classes that inherit
+// from ClapTrap have access to these member variables.
 protected:
 	std::string		_name;
-	unsigned int	_hit_points		= CLAPTRAP_HIT_POINTS;
-	unsigned int	_energy_points	= CLAPTRAP_ENERGY_POINTS;
-	unsigned int	_attack_damage	= CLAPTRAP_ATTACK_DAMAGE;
-	unsigned int	_max_hp			= CLAPTRAP_HIT_POINTS;
-	unsigned int	_max_ep			= CLAPTRAP_ENERGY_POINTS;
+	unsigned int	_hp		= CLAPTRAP_HP;
+	unsigned int	_ep		= CLAPTRAP_EP;
+	unsigned int	_ad		= CLAPTRAP_AD;
+	unsigned int	_max_hp	= CLAPTRAP_HP;
+	unsigned int	_max_ep	= CLAPTRAP_EP;
 };
 
 #endif

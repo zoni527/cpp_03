@@ -17,9 +17,9 @@
 
 # include <string>
 
-# define CLAPTRAP_HIT_POINTS	10
-# define CLAPTRAP_ENERGY_POINTS	10
-# define CLAPTRAP_ATTACK_DAMAGE	0
+# define CLAPTRAP_HP	10
+# define CLAPTRAP_EP	10
+# define CLAPTRAP_AD	0
 
 class ClapTrap {
 
@@ -49,9 +49,9 @@ public:
 
 private:
 	std::string		_name;
-	unsigned int	_hit_points		= CLAPTRAP_HIT_POINTS;
-	unsigned int	_energy_points	= CLAPTRAP_ENERGY_POINTS;
-	unsigned int	_attack_damage	= CLAPTRAP_ATTACK_DAMAGE;
+	unsigned int	_hp	= CLAPTRAP_HP;
+	unsigned int	_ep	= CLAPTRAP_EP;
+	unsigned int	_ad	= CLAPTRAP_AD;
 };
 
 #endif

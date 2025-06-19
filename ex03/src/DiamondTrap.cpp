@@ -35,10 +35,10 @@ DiamondTrap:: DiamondTrap( void )
 : ClapTrap( C_B_HI_P "sane_default_clap_name" C_RST ) {
 
 	std::cout << diamond_trap_str << "	default constructor called" << std::endl;
-	_name = C_B_HI_Y "sane_default" C_RST;
-	_hit_points		= _max_hp	= FRAGTRAP_HIT_POINTS;
-	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
-	_attack_damage	= FRAGTRAP_ATTACK_DAMAGE;
+	_name			= C_B_HI_Y "sane_default" C_RST;
+	_hp	= _max_hp	= FRAGTRAP_HP;
+	_ep	= _max_ep	= SCAVTRAP_EP;
+	_ad				= FRAGTRAP_AD;
 }
 
 DiamondTrap:: DiamondTrap( std::string const &name )
@@ -46,32 +46,27 @@ DiamondTrap:: DiamondTrap( std::string const &name )
 
 	std::cout << diamond_trap_str << "	string constructor called" << std::endl;
 	_name			= C_B_HI_Y + name + C_RST;
-	_hit_points		= _max_hp	= FRAGTRAP_HIT_POINTS;
-	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
-	_attack_damage				= FRAGTRAP_ATTACK_DAMAGE;
+	_hp	= _max_hp	= FRAGTRAP_HP;
+	_ep	= _max_ep	= SCAVTRAP_EP;
+	_ad				= FRAGTRAP_AD;
 }
 
 DiamondTrap:: DiamondTrap( DiamondTrap const &src )
 : ClapTrap( src._name + C_B_HI_P "_clap_name" + C_RST ), ScavTrap(), FragTrap() {
 
 	std::cout << diamond_trap_str << "	copy constructor called" << std::endl;
-	_name = src._name;
-	if ( src._hit_points > FRAGTRAP_HIT_POINTS )
-		_hit_points = FRAGTRAP_HIT_POINTS;
-	else
-		_hit_points = src._hit_points;
-	if ( src._energy_points > SCAVTRAP_ENERGY_POINTS )
-		_energy_points = SCAVTRAP_ENERGY_POINTS;
-	else
-		_energy_points = src._energy_points;
-	_attack_damage = FRAGTRAP_ATTACK_DAMAGE;
-	_max_hp = FRAGTRAP_HIT_POINTS;
-	_max_ep = SCAVTRAP_ENERGY_POINTS;
+	_name	= src._name;
+	_max_hp	= FRAGTRAP_HP;
+	_max_ep	= SCAVTRAP_EP;
+	_ad		= FRAGTRAP_AD;
+	_hp		= ( src._hp > _max_hp ? _max_hp : src._hp );
+	_ep 	= ( src._ep > _max_ep ? _max_ep : src._ep );
 }
 
 // ------------------------------------------------------------------ destructor
 
 DiamondTrap:: ~DiamondTrap( void ) {
+
 	std::cout << diamond_trap_str + "	destructor called" << std::endl;
 }
 
@@ -80,9 +75,14 @@ DiamondTrap:: ~DiamondTrap( void ) {
 DiamondTrap &DiamondTrap:: operator = ( DiamondTrap const &src ) {
 
 	std::cout << diamond_trap_str + "	assignment operator called" << std::endl;
-	if ( this == &src )
-		return *this;
-	ClapTrap:: operator=( src );
-	ClapTrap:: _name = src.ClapTrap::_name;
+	if ( this != &src ) {
+		ClapTrap:: _name = src.ClapTrap::_name;
+		_name	= src._name;
+		_max_hp	= FRAGTRAP_HP;
+		_max_ep	= SCAVTRAP_EP;
+		_ad		= FRAGTRAP_AD;
+		_hp		= ( src._hp > _max_hp ? _max_hp : src._hp );
+		_ep 	= ( src._ep > _max_ep ? _max_ep : src._ep );
+	}
 	return *this;
 }

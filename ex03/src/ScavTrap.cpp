@@ -14,30 +14,28 @@
 #include "ansi_colors.hpp"
 #include <iostream>
 
-
 const std::string	scav_trap_str = C_B_C "ScavTrap" C_RST;
 
 // ------------------------------------------------------------ member functions
 
 void	ScavTrap:: attack( std::string const &target ) {
 
-	if ( _hit_points == 0 ) {
+	std::string reason = "";
+	if ( _hp == 0 )
+		reason = "is KO";
+	else if ( _ep == 0 )
+		reason = "is out of energy";
+	if ( !reason.empty() ) {
 		std::cout
-			<< scav_trap_str + "	" << _name << " is KO, can't attack "
-			<< target << std::endl;
+			<< scav_trap_str + "	" << _name << " " << reason
+			<< ", can't attack " << target << std::endl;
 		return;
 	}
-	if ( _energy_points == 0 ) {
-		std::cout
-			<< scav_trap_str + "	" << _name << " is out of energy, can't attack "
-			<< target << std::endl;
-		return;
-	}
-	--_energy_points;
+	--_ep;
 	std::cout
 		<< scav_trap_str + "	" << _name << " attacks " << target
-		<< ", causing " << _attack_damage << " points of damage! It has "
-		<< _energy_points << " energy points left" << std::endl;
+		<< ", causing " << _ad << " points of damage! It now has "
+		<< _ep << " energy points left" << std::endl;
 }
 
 void	ScavTrap:: guardGate( void ) {
@@ -52,35 +50,29 @@ ScavTrap:: ScavTrap( void )
 : ClapTrap( C_B_HI_C "sane_default" C_RST ) {
 
 	std::cout << scav_trap_str + "	default constructor called" << std::endl;
-	_hit_points		= _max_hp	= SCAVTRAP_HIT_POINTS;
-	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
-	_attack_damage	= SCAVTRAP_ATTACK_DAMAGE;
+	_hp	= _max_hp	= SCAVTRAP_HP;
+	_ep	= _max_ep	= SCAVTRAP_EP;
+	_ad				= SCAVTRAP_AD;
 }
 
 ScavTrap:: ScavTrap( std::string const &name )
 : ClapTrap( C_B_HI_C + name + C_RST ) {
 
 	std::cout << scav_trap_str + "	string constructor called" << std::endl;
-	_hit_points		= _max_hp	= SCAVTRAP_HIT_POINTS;
-	_energy_points	= _max_ep	= SCAVTRAP_ENERGY_POINTS;
-	_attack_damage				= SCAVTRAP_ATTACK_DAMAGE;
+	_hp	= _max_hp	= SCAVTRAP_HP;
+	_ep	= _max_ep	= SCAVTRAP_EP;
+	_ad				= SCAVTRAP_AD;
 }
 
 ScavTrap:: ScavTrap( ScavTrap const &src )
-: ClapTrap( C_B_HI_C + src._name + C_RST ) {
+: ClapTrap( src._name ) {
 
 	std::cout << scav_trap_str + "	copy constructor called" << std::endl;
-	if ( src._hit_points > SCAVTRAP_HIT_POINTS )
-		_hit_points = SCAVTRAP_HIT_POINTS;
-	else
-		_hit_points = src._hit_points;
-	if ( src._energy_points > SCAVTRAP_ENERGY_POINTS )
-		_energy_points = SCAVTRAP_ENERGY_POINTS;
-	else
-		_energy_points = src._energy_points;
-	_attack_damage = SCAVTRAP_ATTACK_DAMAGE;
-	_max_hp = SCAVTRAP_HIT_POINTS;
-	_max_ep = SCAVTRAP_ENERGY_POINTS;
+	_max_hp	= SCAVTRAP_HP;
+	_max_ep	= SCAVTRAP_EP;
+	_ad		= SCAVTRAP_AD;
+	_hp		= ( src._hp > _max_hp ? _max_hp : src._hp );
+	_ep 	= ( src._ep > _max_ep ? _max_ep : src._ep );
 }
 
 // ------------------------------------------------------------------ destructor
@@ -95,8 +87,13 @@ ScavTrap:: ~ScavTrap( void ) {
 ScavTrap &ScavTrap:: operator = ( ScavTrap const &src ) {
 
 	std::cout << scav_trap_str + "	assignment operator called" << std::endl;
-	if ( this == &src )
-		return *this;
-	ClapTrap:: operator=( src );
+	if ( this != &src ) {
+		_name	= src._name;
+		_max_hp	= SCAVTRAP_HP;
+		_max_ep	= SCAVTRAP_EP;
+		_ad		= SCAVTRAP_AD;
+		_hp		= ( src._hp > _max_hp ? _max_hp : src._hp );
+		_ep 	= ( src._ep > _max_ep ? _max_ep : src._ep );
+	}
 	return *this;
 }
